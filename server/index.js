@@ -3,11 +3,14 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import accounts from "./routers/accounts.router.js";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-const URI = `mongodb+srv://truongchinguyen002:01226729916ng@tiktokaccmanager.fd4lr.mongodb.net/?retryWrites=true&w=majority&appName=TiktokAccManager`;
+const PORT = process.env.PORT || 3000;
+const URI = process.env.DATABASE_URL;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
