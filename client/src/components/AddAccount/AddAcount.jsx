@@ -104,7 +104,7 @@ const AddAcount = ({ onClose, onSuccess }) => {
             onChange={handleChange}
           >
             <option value="0">Chưa Đăng nhập trên máy nào</option>
-            {Array.from({ length: 15 }, (_, index) => (
+            {Array.from({ length: 16 }, (_, index) => (
               <option key={index} value={index + 1}>
                 Máy {index + 1}
               </option>
