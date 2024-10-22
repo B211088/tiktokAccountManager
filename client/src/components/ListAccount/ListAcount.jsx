@@ -70,7 +70,7 @@ const ListAccount = ({ refreshList }) => {
   });
 
   return (
-    <div className="w-full sm:w-[90%] min-w-[410px] flex flex-col items-center relative z-[1] px-[10px]">
+    <div className="w-full sm:w-[90%] min-w-[390px] flex flex-col items-center relative z-[1] px-[10px]">
       <div className=" w-full flex items-center justify-between flex-wrap  mt-[30px] py-[10px] px-[10px] bg-bg-light border-[1px] rounded-[5px] border-cl-border">
         <div className=" sm:w-[200px] w-full h-[50px] leading-[50px]">
           Số lượng acc: {filteredAccounts.length}
