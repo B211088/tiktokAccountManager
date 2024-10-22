@@ -62,7 +62,7 @@ const UpdateAccount = ({ account, onClose, onSuccess }) => {
 
   return (
     <div
-      className="fixed flex items-center justify-center top-0 right-0 left-0 bottom-0 bg-bg-overlay z-[2]"
+      className="fixed flex items-center justify-center top-0 right-0 left-0 bottom-0 bg-bg-overlay z-[2] px-[8px]"
       onClick={handleOverlayClick}
     >
       <div
