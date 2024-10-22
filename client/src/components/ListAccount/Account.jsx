@@ -62,7 +62,7 @@ const Account = ({ account, index, onEdit }) => {
 
   return (
     <div
-      className="w-full h-full flex flex-wrap items-center justify-between bg-bg-light border-[1px] rounded-[5px] border-cl-border px-[10px] gap-[10px] cursor-pointer relative"
+      className="w-full flex flex-wrap items-center justify-between bg-bg-light border-[1px] rounded-[5px] border-cl-border px-[10px] gap-[10px] cursor-pointer relative"
       onClick={() => {
         setIsModify(false);
         setIsOpenUpdateModal(false);
