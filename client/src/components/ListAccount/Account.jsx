@@ -71,7 +71,7 @@ const Account = ({ account, index, onEdit }) => {
       <div className="w-[30px] min-w-[30px] rounded-[5px] border-cl-border border-[1px] text-center font-bold leading-[26px]">
         {index + 1}
       </div>
-      <div className="flex min-w-[280px] sm:max-w-[80%] sm:flex-row flex-col flex-1  justify-center items-center flex-wrap text-left">
+      <div className="flex min-w-[260px] sm:max-w-[80%] sm:flex-row flex-col flex-1  justify-center items-center flex-wrap text-left">
         <div className="flex-1 sm:w-[20%] w-full min-w-[150px] sm:h-[68px] sm:leading-[68px] h-[20px]   font-bold px-[5px] leading-[30px] text-[0.8rem] overflow-hidden whitespace-nowrap text-ellipsis">
           IDTIKTOK: {account.idTiktok}
         </div>
