@@ -97,7 +97,7 @@ const Account = ({ account, index, onEdit }) => {
         ></div>
       </div>
       <div className="min-w-[30px] rounded-[5px] border-cl-border border-[1px] text-center font-bold leading-[26px] text-[1.2rem]">
-        <div className="w-[30px] h-[30px] relative" onClick={changeStatusModal}>
+        <div className="w-[30px] h-[30px] leading-[30px] learelative" onClick={changeStatusModal}>
           <i className="fa-solid fa-ellipsis-vertical"></i>
           {isModify && (
             <div
