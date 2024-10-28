@@ -45,6 +45,14 @@ const Account = ({ account, index, onEdit }) => {
     setIsOpenUpdateModal(false);
     onEdit();
   };
+    const handleResetTime = useCallback(() => {
+    const newDataAccount = {
+      ...account,
+      date: currentDate,
+    };
+    dispatch(actions.updateAccount.updateAccountRequest(newDataAccount));
+    onEdit();
+  }, [account]);
 
   const handleClickOutside = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -128,6 +136,16 @@ const Account = ({ account, index, onEdit }) => {
                   onClick={handleDeleteAccount}
                 >
                   Xóa
+                </li>
+                <li
+                  className="relative h-[30px] hover:bg-bg-btn-hover bg-bg-light"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsModify(false);
+                    handleResetTime();
+                  }}
+                  >
+                  Đặt lại thời gian
                 </li>
               </ul>
             </div>
