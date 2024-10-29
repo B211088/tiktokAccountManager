@@ -36,11 +36,12 @@ const AddAcount = ({ onClose, submitSucces }) => {
           pertain: "",
         });
         dispatch(actions.getAccounts.getAccountsRequest());
+        submitSucces();
       } else {
         console.log("Please fill out all required fields.");
       }
       onClose();
-      submitSucces();
+
     },
     [data, dispatch]
   );
