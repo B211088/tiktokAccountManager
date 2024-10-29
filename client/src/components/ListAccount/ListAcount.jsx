@@ -1,10 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../redux/actions";
 import { accountsState$ } from "../../redux/selector";
 import Account from "./Account";
+import AddAcount from "../AddAccount/AddAcount";
+import Tools from "../Tools/Tools";
 
-const ListAccount = ({ refreshList }) => {
+const ListAccount = () => {
   const dispatch = useDispatch();
   const accounts = useSelector(accountsState$);
   const [accountList, setAccountList] = useState(accounts || []);
@@ -12,6 +14,17 @@ const ListAccount = ({ refreshList }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterMachine, setFilterMachine] = useState("");
   const [selectedAccounts, setSelectedAccounts] = useState([]);
+  const [statusAddAccount, setStatusAddAccount] = useState(false);
+  const [refreshList, setRefreshList] = useState(false);
+
+  const changeStatusAddAccount = () => {
+    setStatusAddAccount(!statusAddAccount);
+  };
+
+  const handleAddAccountSubmit = () => {
+    setStatusAddAccount(false);
+    handleRefreshList();
+  };
 
   const [edit, setEdit] = useState(false);
 
@@ -19,14 +32,12 @@ const ListAccount = ({ refreshList }) => {
     setEdit((prev) => !prev);
   };
 
-  useEffect(() => {
-    dispatch(actions.getAccounts.getAccountsRequest());
-  }, [dispatch, refreshList, edit]);
+  const handleRefreshListAdd = () => {
+    setRefreshList(true);
+  };
 
   useEffect(() => {
-    if (refreshList || edit) {
-      dispatch(actions.getAccounts.getAccountsRequest());
-    }
+    dispatch(actions.getAccounts.getAccountsRequest());
   }, [dispatch, refreshList, edit]);
 
   useEffect(() => {
@@ -153,6 +164,13 @@ const ListAccount = ({ refreshList }) => {
           <div className="text-center text-gray-500">
             Không thể tìm thấy tài khoản nào {":(("}
           </div>
+        )}
+        <Tools onClick={changeStatusAddAccount} />
+        {statusAddAccount && (
+          <AddAcount
+            onClose={handleAddAccountSubmit}
+            submitSucces={handleRefreshListAdd}
+          />
         )}
       </div>
     </div>
