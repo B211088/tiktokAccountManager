@@ -4,7 +4,7 @@ import * as actions from "../../redux/actions";
 import { accountsState$ } from "../../redux/selector";
 import Account from "./Account";
 
-const ListAccount = ({ refreshList, onEdit }) => {
+const ListAccount = ({ refreshList }) => {
   const dispatch = useDispatch();
   const accounts = useSelector(accountsState$);
   const [accountList, setAccountList] = useState(accounts || []);
@@ -13,9 +13,15 @@ const ListAccount = ({ refreshList, onEdit }) => {
   const [filterMachine, setFilterMachine] = useState("");
   const [selectedAccounts, setSelectedAccounts] = useState([]);
 
+  const [edit, setEdit] = useState(false);
+
+  const handleRefreshList = () => {
+    setEdit((prev) => !prev);
+  };
+
   useEffect(() => {
     dispatch(actions.getAccounts.getAccountsRequest());
-  }, [dispatch, refreshList, onEdit]);
+  }, [dispatch, refreshList, edit]);
 
   useEffect(() => {
     setAccountList(accounts || []);
@@ -132,7 +138,7 @@ const ListAccount = ({ refreshList, onEdit }) => {
               key={account._id}
               index={index}
               account={account}
-              onEdit={onEdit}
+              onEdit={handleRefreshList}
               isSelected={selectedAccounts.includes(account._id)}
               onSelect={handleSelectAccount}
             />
