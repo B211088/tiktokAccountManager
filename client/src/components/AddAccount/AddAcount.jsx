@@ -2,12 +2,12 @@ import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import * as actions from "../../redux/actions";
 
-const AddAcount = ({ onClose, onSuccess }) => {
+const AddAcount = ({ onClose, submitSucces }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState({
     idTiktok: "",
     accountGoogle: "",
-    date: new Date().toISOString().split("T")[0], // Đặt giá trị mặc định là ngày hiện tại
+    date: new Date().toISOString().split("T")[0],
     pertain: "",
   });
 
@@ -32,16 +32,17 @@ const AddAcount = ({ onClose, onSuccess }) => {
         setData({
           idTiktok: "",
           accountGoogle: "",
-          date: new Date().toISOString().split("T")[0], // Đặt lại giá trị ngày sau khi thêm tài khoản
+          date: new Date().toISOString().split("T")[0],
           pertain: "",
         });
-        onSuccess();
         dispatch(actions.getAccounts.getAccountsRequest());
       } else {
         console.log("Please fill out all required fields.");
       }
+      onClose();
+      submitSucces();
     },
-    [data, dispatch, onSuccess]
+    [data, dispatch]
   );
 
   const handleChange = (e) => {
@@ -93,7 +94,7 @@ const AddAcount = ({ onClose, onSuccess }) => {
             type="date"
             name="date"
             className="w-full h-[36px] border-[1px] border-cl-border-input rounded-[5px] px-[5px] text-[0.8rem] mt-[20px]"
-            value={data.date} // Sử dụng giá trị ngày trong state
+            value={data.date}
             onChange={handleChange}
           />
 
@@ -113,7 +114,7 @@ const AddAcount = ({ onClose, onSuccess }) => {
 
           <div className="w-full mt-[30px] flex flex-col justify-between">
             <button
-              type="submit" // Đổi type thành "submit" để xử lý đúng khi bấm nút
+              type="submit"
               className="w-full h-[36px] bg-bg-btn-light rounded-[5px] text-[1rem] text-text-light font-bold text-text-light"
             >
               Thêm
