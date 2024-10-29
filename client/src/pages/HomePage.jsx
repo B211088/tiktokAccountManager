@@ -14,10 +14,11 @@ const HomePage = () => {
 
   const handleAddAccountSubmit = () => {
     setStatusAddAccount(false);
+    handleRefreshList();
   };
 
   const handleRefreshList = () => {
-    setRefreshList(!refreshList);
+    setRefreshList((prev) => !prev);
   };
 
   return (
