@@ -1,14 +1,25 @@
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import * as actions from "../../redux/actions";
 
-const UpdateAccount = ({ account, onClose, onSuccess }) => {
+const UpdateAccount = ({ account, onClose, onCancel, submitSucces }) => {
   const dispatch = useDispatch();
-  // Khởi tạo formData với account, nếu date không hợp lệ thì đặt về Date.now()
+
   const [formData, setFormData] = useState({
-    ...account,
-    date: account.date ? account.date : Date.now(), // Đặt về thời gian hiện tại nếu không có date
+    idTiktok: "",
+    accountGoogle: "",
+    date: Date.now(),
+    pertain: "0",
   });
+
+  useEffect(() => {
+    if (account) {
+      setFormData({
+        ...account,
+        date: account.date || Date.now(),
+      });
+    }
+  }, [account]);
 
   const formatDate = (timeStamp) => {
     const date = new Date(timeStamp);
@@ -26,37 +37,37 @@ const UpdateAccount = ({ account, onClose, onSuccess }) => {
     }));
   };
 
+  const isDateValid = (timeStamp) => {
+    const inputDate = new Date(timeStamp);
+    const currentDate = new Date();
+    return inputDate <= currentDate;
+  };
+
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
       const timeStamp = new Date(formData.date).getTime();
-      const inputDate = new Date(timeStamp);
-      const currentDate = new Date();
 
-      if (inputDate > currentDate) {
+      if (!isDateValid(timeStamp)) {
         alert("Ngày không được lớn hơn ngày hiện tại.");
         return;
       }
 
-      const newformData = {
+      const newFormData = {
         ...formData,
         date: timeStamp,
       };
-      dispatch(actions.updateAccount.updateAccountRequest(newformData));
-      onSuccess();
+
+      dispatch(actions.updateAccount.updateAccountRequest(newFormData));
       onClose();
+      submitSucces();
     },
-    [formData, dispatch, onSuccess, onClose]
+    [formData, dispatch, onClose]
   );
-
-  const handleCancel = () => {
-    onSuccess();
-    onClose();
-  };
-
   const handleOverlayClick = (e) => {
+    e.stopPropagation();
     if (e.target === e.currentTarget) {
-      onClose();
+      onCancel();
     }
   };
 
@@ -122,7 +133,7 @@ const UpdateAccount = ({ account, onClose, onSuccess }) => {
             <button
               type="button"
               className="w-full h-[36px] mt-[10px] bg-bg-light rounded-[5px] border-[1px] border-cl-border-input text-[1rem] text-text-dark font-bold"
-              onClick={handleCancel}
+              onClick={onClose}
             >
               Hủy
             </button>
