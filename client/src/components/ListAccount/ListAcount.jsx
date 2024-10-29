@@ -53,14 +53,6 @@ const ListAccount = ({ refreshList, onEdit }) => {
     setFilterMachine(e.target.value);
   };
 
-  const handleSelectAll = (e) => {
-    if (e.target.checked) {
-      setSelectedAccounts(sortedAccounts.map((account) => account._id));
-    } else {
-      setSelectedAccounts([]);
-    }
-  };
-
   const handleSelectAccount = (accountId) => {
     setSelectedAccounts((prev) => {
       if (prev.includes(accountId)) {
