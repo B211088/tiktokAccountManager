@@ -31,7 +31,7 @@ const HomePage = () => {
           submitSucces={handleRefreshList}
         />
       )}
-      <ListAcount refreshList={refreshList} onEdit={handleRefreshList} />
+      <ListAcount refreshList={refreshList} />
     </div>
   );
 };
