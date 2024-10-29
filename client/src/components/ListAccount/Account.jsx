@@ -14,6 +14,11 @@ const Account = ({ account, index, onEdit }) => {
   const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
   const modalRef = useRef(null);
 
+  const [data, setData] = useState(account);
+
+  useEffect(() => {
+    setData(data);
+  }, [account]);
 
   const handleChangModalUpdate = () => {
     setIsOpenUpdateModal(!isOpenUpdateModal);
@@ -35,7 +40,7 @@ const Account = ({ account, index, onEdit }) => {
         onEdit();
       }
     },
-    [dispatch, account]
+    [dispatch, account, onEdit]
   );
 
   const toggleActionMenu = (e) => {
