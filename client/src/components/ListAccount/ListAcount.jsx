@@ -15,7 +15,7 @@ const ListAccount = ({ refreshList, onEdit }) => {
 
   useEffect(() => {
     dispatch(actions.getAccounts.getAccountsRequest());
-  }, [dispatch, refreshList]);
+  }, [dispatch, refreshList, onEdit]);
 
   useEffect(() => {
     setAccountList(accounts || []);
