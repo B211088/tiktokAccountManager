@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "https://tiktokaccountmanager.onrender.com";
+const URL = import.meta.env.VITE_API_URL;
 
 export const fetchAccounts = () => axios.get(`${URL}/accounts`);
 export const createAccount = (payload) =>
