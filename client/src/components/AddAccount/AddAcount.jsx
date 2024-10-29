@@ -29,21 +29,20 @@ const AddAcount = ({ onClose, submitSucces }) => {
         };
 
         dispatch(actions.createAccount.createAccountRequest(newData));
+        submitSucces();
         setData({
           idTiktok: "",
           accountGoogle: "",
           date: new Date().toISOString().split("T")[0],
           pertain: "",
         });
-        dispatch(actions.getAccounts.getAccountsRequest());
-        submitSucces();
       } else {
         console.log("Please fill out all required fields.");
       }
-      onClose();
 
+      onClose();
     },
-    [data, dispatch]
+    [data, dispatch, submitSucces]
   );
 
   const handleChange = (e) => {
@@ -62,7 +61,7 @@ const AddAcount = ({ onClose, submitSucces }) => {
 
   return (
     <div
-      className="absolute flex items-center justify-center top-0 right-0 left-0 bottom-0 bg-bg-overlay z-[2] px-[8px]"
+      className="fixed flex items-center justify-center top-0 right-0 left-0 bottom-0 bg-bg-overlay z-[2] px-[8px]"
       onClick={handleOverlayClick}
     >
       <div className="w-[400px] h-[430px] flex flex-col items-center bg-bg-light z-6 rounded-[5px] opacity-1 p-[10px] z-[3]">
