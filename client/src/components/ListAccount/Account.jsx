@@ -14,11 +14,6 @@ const Account = ({ account, index, onEdit }) => {
   const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
   const modalRef = useRef(null);
 
-  const [data, setData] = useState(account);
-
-  useEffect(() => {
-    setData(account);
-  }, [account]);
 
   const handleChangModalUpdate = () => {
     setIsOpenUpdateModal(!isOpenUpdateModal);
