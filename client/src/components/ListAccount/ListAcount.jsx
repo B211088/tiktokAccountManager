@@ -33,7 +33,7 @@ const ListAccount = () => {
   };
 
   const handleRefreshListAdd = () => {
-    setRefreshList(true);
+    setRefreshList((prev) => !prev);
   };
 
   useEffect(() => {
